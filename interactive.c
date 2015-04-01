@@ -29,6 +29,7 @@
 //
 
 #include "dump1090.h"
+#include "flight_info.h"
 //
 // ============================= Utility functions ==========================
 //
@@ -296,6 +297,7 @@ struct aircraft *interactiveReceiveData(struct modesMessage *mm) {
     // If a (new) CALLSIGN has been received, copy it to the aircraft structure
     if (mm->bFlags & MODES_ACFLAGS_CALLSIGN_VALID) {
         memcpy(a->flight, mm->flight, sizeof(a->flight));
+        getFlightInfo(mm->flight, &(a->flight_src), &(a->flight_dst));
     }
 
     // If a (new) ALTITUDE has been received, copy it to the aircraft structure

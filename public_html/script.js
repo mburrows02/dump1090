@@ -18,7 +18,7 @@ CenterLon = Number(localStorage['CenterLon']) || CONST_CENTERLON;
 ZoomLvl   = Number(localStorage['ZoomLvl']) || CONST_ZOOMLVL;
 
 function fetchData() {
-	$.getJSON('/dump1090/data.json', function(data) {
+	$.getJSON('data.json', function(data) {
 		PlanesOnMap = 0
 		SpecialSquawk = false;
 		
@@ -273,6 +273,19 @@ function refreshSelected() {
 	    html += '&nbsp;<a href="http://flightaware.com/live/flight/'+selected.flight+'" target="_blank">[FlightAware]</a>';
 	}
 	html += '<td></tr>';
+
+	if (selected && selected.flight != '') {
+		//This information needs to come from the JSON object and not another site
+		//var info = getFlightInfo('http://flightaware.com/live/flight/'+selected.flight);
+		var src = 'Departown';
+		var dest = 'Arriville';
+
+		html += '<tr><td>Departure: ' + src + '</td>';
+		html += '<td>Arrival: ' + dest + '</td></tr>';
+	} else {
+		html += '<tr><td>Departure: n/a</td>';
+		html += '<td>Arrival: n/a</td></tr>';
+	}
 	
 	if (selected) {
 	    if (Metric) {
@@ -347,6 +360,22 @@ function refreshSelected() {
 	html += '</table>';
 	
 	document.getElementById('plane_detail').innerHTML = html;
+}
+
+//Returns two strings, the departure and arrival locations of the flight at the url
+//Not going to work because of same-origin policy!
+function getFlightInfo(url) {
+	console.log("hello");
+	$.ajax({
+		url: url
+	})
+	.done(function( html ) {
+		console.log( html );
+	})
+	.fail(function( jqXHR, textStatus ) {
+		alert( "Request failed: " + textStatus );
+	});
+	return "";
 }
 
 // Right now we have no means to validate the speed is good

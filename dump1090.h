@@ -224,6 +224,11 @@ struct aircraft {
     uint64_t      even_cprtime;
     double        lat, lon;       // Coordinated obtained from CPR encoded data
     int           bFlags;         // Flags related to valid fields in this structure
+
+    //Added information
+    char         *flight_src;
+    char         *flight_dst;
+
     struct aircraft *next;        // Next aircraft in our linked list
 };
 
