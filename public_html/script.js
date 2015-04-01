@@ -277,8 +277,8 @@ function refreshSelected() {
 	if (selected && selected.flight != '') {
 		//This information needs to come from the JSON object and not another site
 		//var info = getFlightInfo('http://flightaware.com/live/flight/'+selected.flight);
-		var src = 'Departown';
-		var dest = 'Arriville';
+		var src = selected.flight_src;
+		var dest = selected.flight_dst;
 
 		html += '<tr><td>Departure: ' + src + '</td>';
 		html += '<td>Arrival: ' + dest + '</td></tr>';

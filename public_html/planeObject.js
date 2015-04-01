@@ -14,7 +14,9 @@ var planeObject = {
 	flight		: null,
 	squawk		: null,
 	icao		: null,
-	is_selected	: false,	
+	is_selected	: false,
+	flight_src  : null,
+	flight_dst  : null,	
 
 	// Data packet numbers
 	messages	: null,
@@ -144,6 +146,8 @@ var planeObject = {
 			this.latitude	= data.lat;
 			this.longitude	= data.lon;
 			this.flight	= data.flight;
+			this.flight_src	= data.flight_src;
+			this.flight_dst	= data.flight_dst;
 			this.squawk	= data.squawk;
 			this.icao	= data.hex;
 			this.messages	= data.messages;
