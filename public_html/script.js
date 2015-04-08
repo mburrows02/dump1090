@@ -275,16 +275,21 @@ function refreshSelected() {
 	html += '<td></tr>';
 
 	if (selected && selected.flight != '') {
-		//This information needs to come from the JSON object and not another site
-		//var info = getFlightInfo('http://flightaware.com/live/flight/'+selected.flight);
-		var src = selected.flight_src;
-		var dest = selected.flight_dst;
+		html += '<tr><td>Origin: ' + selected.flight_orig + '</td>';
+		html += '<td>Destination: ' + selected.flight_dest + '</td></tr>';
 
-		html += '<tr><td>Departure: ' + src + '</td>';
-		html += '<td>Arrival: ' + dest + '</td></tr>';
+		html += '<tr><td>Departure: ' + selected.dep_time + '</td>';
+		html += '<td>Arrival: ' + selected.arr_time + '</td></tr>';
+
+		html += '<tr><td>Scheduled: ' + selected.sched_dep + '</td>';
+		html += '<td>Scheduled: ' + selected.sched_arr + '</td></tr>';
 	} else {
+		html += '<tr><td>Origin: n/a</td>';
+		html += '<td>Destination: n/a</td></tr>';
 		html += '<tr><td>Departure: n/a</td>';
 		html += '<td>Arrival: n/a</td></tr>';
+		html += '<tr><td>Scheduled Departure: n/a</td>';
+		html += '<td>Scheduled Arrival: n/a</td></tr>';
 	}
 	
 	if (selected) {

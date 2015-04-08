@@ -226,8 +226,12 @@ struct aircraft {
     int           bFlags;         // Flags related to valid fields in this structure
 
     //Added information
-    char         *flight_src;
-    char         *flight_dst;
+    char         *flight_orig;    // The airport from which the flight originated
+    char         *flight_dest;    // The airport for which the flight is destined
+    char         *sched_dep;      // The flight's scheduled departure time
+    char         *sched_arr;      // The flight's scheduled arrival time
+    char         *dep_time;       // The flight's actual or predicted departure time
+    char         *arr_time;       // The flight's actual or predicted arrival time
 
     struct aircraft *next;        // Next aircraft in our linked list
 };
